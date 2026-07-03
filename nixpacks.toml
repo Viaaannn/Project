@@ -1,9 +1,0 @@
-[php]
-version = "8.2"
-extensions = ["intl", "zip", "bcmath", "ctype", "curl", "dom", "fileinfo", "gd", "mbstring", "mysql", "openssl", "pdo", "pdo_mysql", "tokenizer", "xml"]
-
-[composer]
-install = true
-no_dev = true
-no_interaction = true
-ignore_platform_reqs = true
