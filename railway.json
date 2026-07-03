@@ -1,9 +1,10 @@
 {
   "build": {
     "builder": "NIXPACKS",
-    "buildCommand": "npm install && npm run build && composer install --optimize-autoloader --no-dev --no-scripts --no-interaction --ignore-platform-req=ext-intl --ignore-platform-req=ext-zip"
+    "buildCommand": "cp .env.example .env && php artisan key:generate && npm install && npm run build && composer install --optimize-autoloader --no-dev --no-scripts --no-interaction --ignore-platform-req=ext-intl --ignore-platform-req=ext-zip"
   },
   "deploy": {
-    "healthcheckPath": "/"
+    "healthcheckPath": "/",
+    "postdeployCommand": "php artisan migrate --force && php artisan storage:link"
   }
 }
