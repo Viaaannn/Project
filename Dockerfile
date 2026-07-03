@@ -11,8 +11,8 @@ WORKDIR /app
 COPY . .
 
 RUN cp .env.example .env \
+    && composer install --no-dev --optimize-autoloader --no-interaction \
     && php artisan key:generate \
-    && composer install --no-dev --optimize-autoloader --no-scripts --no-interaction \
     && npm install \
     && npm run build \
     && php artisan optimize
