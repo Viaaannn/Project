@@ -1,0 +1,15 @@
+[php]
+version = "8.2"
+
+[phpexec]
+extensions = ["bcmath", "ctype", "curl", "dom", "fileinfo", "gd", "json", "mbstring", "mysql", "openssl", "pdo", "pdo_mysql", "tokenizer", "xml", "zip"]
+
+[phpexec.composer]
+install = true
+
+[phpexec.artisan]
+commands = ["storage:link"]
+
+[[phpexec.artisan.commands]]
+command = "migrate"
+args = ["--force"]
