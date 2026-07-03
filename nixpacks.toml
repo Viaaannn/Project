@@ -1,0 +1,3 @@
+[php]
+version = "8.2"
+extensions = ["intl", "zip", "bcmath", "gd", "mbstring", "mysql", "pdo_mysql", "xml"]
