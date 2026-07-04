@@ -15,7 +15,6 @@ RUN cp .env.example .env \
     && php artisan key:generate \
     && npm install \
     && npm run build \
-    && php artisan optimize \
     && chown -R www-data:www-data storage bootstrap/cache \
     && chmod -R 755 storage bootstrap/cache
 
