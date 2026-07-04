@@ -216,7 +216,7 @@ export default function PPDBInfo({ timeline: timelineProp }) {
                   Mulai Daftar Sekarang <ArrowRight size={14} />
                 </Link>
                 <Link
-                  href="/ppdb-status"
+                  href="/ppdb/status"
                   className="w-full flex items-center justify-center gap-2 rounded-xl border border-slate-200 py-3 font-sans text-xs font-semibold text-slate-700 hover:bg-slate-50 transition mt-3"
                   id="sidebar-cta-check"
                 >
