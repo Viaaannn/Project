@@ -6,6 +6,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+Route::get('/health', fn() => response('OK', 200));
+
 // Admin login redirect — via /ppdb/daftar (satu pintu login)
 Route::get('/admin/login', fn() => redirect('/ppdb/daftar'))->name('filament.admin.auth.login');
 
