@@ -1,7 +1,7 @@
 FROM php:8.2-fpm
 
 RUN apt-get update && apt-get install -y \
-    git unzip curl nginx libzip-dev libicu-dev libpng-dev libonig-dev libxml2-dev \
+    git unzip curl libzip-dev libicu-dev libpng-dev libonig-dev libxml2-dev \
     nodejs npm \
     && docker-php-ext-install intl zip bcmath gd mbstring pdo_mysql xml
 
@@ -18,10 +18,8 @@ RUN cp .env.example .env \
     && chown -R www-data:www-data storage bootstrap/cache \
     && chmod -R 755 storage bootstrap/cache
 
-COPY docker/nginx.conf /etc/nginx/sites-enabled/default
-
 COPY docker/start.sh /start.sh
 RUN chmod +x /start.sh
 
-EXPOSE 80
+EXPOSE ${PORT:-8080}
 CMD ["/start.sh"]
