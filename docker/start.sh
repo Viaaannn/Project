@@ -1,5 +1,4 @@
 #!/bin/bash
-export DB_URL="${MYSQL_URL}"
 php artisan storage:link --force
 php artisan config:clear
 php artisan migrate --force &
