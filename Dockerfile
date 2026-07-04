@@ -1,4 +1,7 @@
 FROM php:8.2-fpm
+ARG CACHEBUST
+
+RUN echo "Build: $(date)" > /build.txt
 
 RUN apt-get update && apt-get install -y \
     git unzip curl libzip-dev libicu-dev libpng-dev libonig-dev libxml2-dev \
