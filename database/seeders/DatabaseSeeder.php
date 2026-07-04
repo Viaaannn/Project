@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($permissions as $perm) {
-            Permission::create(['name' => $perm]);
+            Permission::firstOrCreate(['name' => $perm]);
         }
 
         $roles = [
@@ -60,19 +60,21 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($roles as $roleName => $rolePerms) {
-            $role = Role::create(['name' => $roleName]);
+            $role = Role::firstOrCreate(['name' => $roleName]);
             $role->givePermissionTo($rolePerms);
         }
     }
 
     private function createAdminUser(): void
     {
-        $admin = User::factory()->create([
-            'name' => 'Administrator',
-            'email' => 'admin@darulakhyar.sch.id',
-            'whatsapp' => '081234567890',
-            'password' => bcrypt('password'),
-        ]);
+        $admin = User::firstOrCreate(
+            ['email' => 'admin@darulakhyar.sch.id'],
+            [
+                'name' => 'Administrator',
+                'whatsapp' => '081234567890',
+                'password' => bcrypt('password'),
+            ]
+        );
 
         $admin->assignRole('Super Admin');
     }
@@ -83,11 +85,14 @@ class DatabaseSeeder extends Seeder
         $categoryNames = ['Kegiatan', 'Prestasi', 'Pengumuman', 'Pesantren', 'SMP', 'MA'];
         $categories = [];
         foreach ($categoryNames as $name) {
-            $categories[] = NewsCategory::create([
-                'name' => $name,
-                'slug' => Str::slug($name),
-                'description' => 'Kategori ' . $name,
-            ]);
+            $slug = Str::slug($name);
+            $categories[] = NewsCategory::firstOrCreate(
+                ['slug' => $slug],
+                [
+                    'name' => $name,
+                    'description' => 'Kategori ' . $name,
+                ]
+            );
         }
 
         // News
@@ -103,7 +108,7 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($programs as $program) {
-            Program::create($program);
+            Program::firstOrCreate(['slug' => $program['slug']], $program);
         }
 
         // Galleries
@@ -129,7 +134,7 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($ekskuls as $ekskul) {
-            Ekskul::create($ekskul);
+            Ekskul::firstOrCreate(['slug' => $ekskul['slug']], $ekskul);
         }
 
         // Achievements
@@ -151,7 +156,7 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($timeline as $item) {
-            TimelinePpdb::create($item);
+            TimelinePpdb::firstOrCreate(['slug' => $item['slug']], $item);
         }
     }
 }
